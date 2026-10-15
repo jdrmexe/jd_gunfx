@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom RPG Sound</title>
+</head>
+<body>
+    <audio id="rpgSound" src="rpg.mp3" preload="auto"></audio>
+
+    <script>
+        const audio = document.getElementById('rpgSound');
+
+        window.addEventListener('message', (event) => {
+            if (event.data.action === 'playRpgSound') {
+                audio.pause();
+                audio.currentTime = 0;
+                audio.play().catch(err => {
+                    console.error('RPG audio failed:', err);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
